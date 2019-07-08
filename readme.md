@@ -18,6 +18,11 @@ TO DO:
 ![An Image showing that the checking intersection works for both planes and spheres](./readme-resources/colouredShapes.png)
 * Colour has been added to shapes so we can tell them apart
 
+TO DO:
+* Shadows
+* reflections
+* refraction
+
 ## References
 * [Ray Tracer #4: Rays and Intersections By HillsoftCode](https://www.youtube.com/watch?v=hOeOuZGmeCM)
 * [Raytracing - Ray Sphere Intersection By Victor Li](https://viclw17.github.io/2018/07/16/raytracing-ray-sphere-intersection/)
