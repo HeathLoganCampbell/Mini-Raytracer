@@ -16,6 +16,7 @@ import com.heathlogancampbell.raytracer.ray.Ray;
 import com.heathlogancampbell.raytracer.shapes.Plane;
 import com.heathlogancampbell.raytracer.shapes.Shape;
 import com.heathlogancampbell.raytracer.shapes.Sphere;
+import com.heathlogancampbell.raytracer.utils.Colour;
 import com.heathlogancampbell.raytracer.utils.Vector3f;
 
 public class Raytracer extends Canvas implements Runnable 
@@ -54,8 +55,8 @@ public class Raytracer extends Canvas implements Runnable
 								);
 		
 		
-		this.shapes.add(new Plane(new Vector3f(0.0f, 0.0f, 0.0f), new Vector3f(0.0f, 1.0f, 0.0f)));
-		this.shapes.add(new Sphere(new Vector3f(0.0f, 1.0f, 0.0f), 4));
+		this.shapes.add(new Plane(new Vector3f(0.0f, 0.0f, 0.0f), new Vector3f(0.0f, 1.0f, 0.0f), new Colour(0,0,255)));
+		this.shapes.add(new Sphere(new Vector3f(0.0f, 1.0f, 0.0f), 4, new Colour(255,0,0)));
 		
 		this.createBufferStrategy(2);
 	}
@@ -87,7 +88,13 @@ public class Raytracer extends Canvas implements Runnable
 				}
 				
 				if(intersection)
-					this.pixels[x + y * this.img.getWidth()] = 0xFF0000;
+				{
+					int colour = 0;
+					colour |=  inetersection.colour.r << 16;
+					colour |=  inetersection.colour.g << 8;
+					colour |=  inetersection.colour.b;
+					this.pixels[x + y * this.img.getWidth()] = colour;
+				}
 				else
 					this.pixels[x + y * this.img.getWidth()] = 0x000000;
 			}

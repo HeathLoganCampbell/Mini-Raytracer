@@ -2,16 +2,18 @@ package com.heathlogancampbell.raytracer.utils;
 
 public class Colour 
 {
-	private double r, g, b;
+	public int r;
+	public int g;
+	public int b;
 	
-	public Colour(double r, double g, double b)
+	public Colour(int r, int g, int b)
 	{
 		this.r = r;
 		this.g = g;
 		this.b = b;
 	}
 	
-	public Colour(double all)
+	public Colour(int all)
 	{
 		this(all, all, all);
 	}
@@ -30,7 +32,7 @@ public class Colour
 		this.b *= colour.b;
 	}
 	
-	public void scale(double scalar)
+	public void scale(int scalar)
 	{
 		this.r *= scalar;
 		this.g *= scalar;
@@ -39,8 +41,13 @@ public class Colour
 	
 	public void applyGammaCorrection(float exposure, float gamma )
 	{
-		this.r = Math.pow(this.r * exposure, gamma);
-		this.g = Math.pow(this.g * exposure, gamma);
-		this.b = Math.pow(this.b * exposure, gamma);
+		this.r = (int) Math.pow(this.r * exposure, gamma);
+		this.g = (int) Math.pow(this.g * exposure, gamma);
+		this.b = (int) Math.pow(this.b * exposure, gamma);
+	}
+	
+	@Override
+	public String toString() {
+		return new String("[" + r + ", " + g + ", " + b + "]");
 	}
 }

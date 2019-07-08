@@ -2,6 +2,7 @@ package com.heathlogancampbell.raytracer.shapes;
 
 import com.heathlogancampbell.raytracer.ray.IntersectionLog;
 import com.heathlogancampbell.raytracer.ray.Ray;
+import com.heathlogancampbell.raytracer.utils.Colour;
 import com.heathlogancampbell.raytracer.utils.Vector3f;
 
 /**
@@ -33,9 +34,9 @@ public class Sphere extends Shape
 	private double radius;
 	private double radiusSq;
 	
-	public Sphere(Vector3f point, double radius)
+	public Sphere(Vector3f point, double radius, Colour colour)
 	{
-		super(point);
+		super(point, colour);
 		this.radius = radius;
 		this.radiusSq = this.radius * this.radius;
 	}
@@ -57,6 +58,7 @@ public class Sphere extends Shape
 		
 		intersectionLog.t = (-b - Math.sqrt(discriminant)) / (2.0 * a);
 		intersectionLog.hitShape = this;
+		intersectionLog.colour = this.colour;
 		return true;
 	}
 }

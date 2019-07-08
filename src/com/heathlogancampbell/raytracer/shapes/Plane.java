@@ -2,6 +2,7 @@ package com.heathlogancampbell.raytracer.shapes;
 
 import com.heathlogancampbell.raytracer.ray.IntersectionLog;
 import com.heathlogancampbell.raytracer.ray.Ray;
+import com.heathlogancampbell.raytracer.utils.Colour;
 import com.heathlogancampbell.raytracer.utils.Vector3f;
 
 /**
@@ -25,8 +26,8 @@ public class Plane extends Shape
 {
 	private Vector3f normal;
 
-	public Plane(Vector3f point, Vector3f normal) {
-		super(point);
+	public Plane(Vector3f point, Vector3f normal, Colour colour) {
+		super(point, colour);
 		this.normal = normal;
 	}
 	
@@ -43,7 +44,7 @@ public class Plane extends Shape
 		
 		intersectionLog.t = t;
 		intersectionLog.hitShape = this;
-		
+		intersectionLog.colour = colour;		
 		return true;
 	}
 }
