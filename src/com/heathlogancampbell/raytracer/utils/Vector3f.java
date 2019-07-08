@@ -18,11 +18,18 @@ public class Vector3f
 		this.z = vector.z;
 	}
 	
-	public void scale(float scalar)
+	public Vector3f scale(float scalar)
 	{
-		this.x *= scalar;
-		this.y *= scalar;
-		this.z *= scalar;
+		return new Vector3f(this.x * scalar, this.y * scalar, this.z * scalar);
+	}
+	
+	public Vector3f scale(double scalar) {
+		return this.scale((float) scalar);
+	}
+	
+	public Vector3f add(Vector3f vector)
+	{
+		return new Vector3f(this.x + vector.x, this.y + vector.y, this.z + vector.z);
 	}
 	
 	
@@ -56,4 +63,6 @@ public class Vector3f
 		if( t != 1 &&  t != 0) t = (float) (t / Math.sqrt(t));
 		this.scale(t);
 	}
+
+	
 }
