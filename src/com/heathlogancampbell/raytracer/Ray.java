@@ -22,6 +22,10 @@ public class Ray implements Cloneable
 		this.velocity = velocity;
 		this.tMax = tMax;
 	}
+	
+	public Ray(Vector3f position, Vector3f velocity) {
+		this(position, velocity, RAY_T_MAX);
+	}
 
 	public Ray() {
 		this(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), RAY_T_MAX);

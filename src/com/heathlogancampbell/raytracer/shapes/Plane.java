@@ -28,5 +28,18 @@ public class Plane
 		this.normal = normal;
 	}
 	
+	/**
+	 * 
+	 * @return T value
+	 */
+	public double intersection()
+	{
+		return 0.0d;
+	}
+	
+	public boolean isIntersection()
+	{
+		return false;
+	}
 	
 }

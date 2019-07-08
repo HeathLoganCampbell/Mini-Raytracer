@@ -1,6 +1,7 @@
 package com.heathlogancampbell.raytracer.utils;
 
-public class Vector3f
+
+public class Vector3f implements Cloneable
 {
 	public float x, y, z;
 	
@@ -32,6 +33,11 @@ public class Vector3f
 		return new Vector3f(this.x + vector.x, this.y + vector.y, this.z + vector.z);
 	}
 	
+	public Vector3f subtract(Vector3f vector)
+	{
+		return new Vector3f(this.x - vector.x, this.y - vector.y, this.z - vector.z);
+	}
+	
 	
 	public float dot(Vector3f vector)
 	{
@@ -57,12 +63,22 @@ public class Vector3f
 		return (float) Math.sqrt(t);
 	}
 	
-	public void normalize()
+	public Vector3f normalize()
 	{
 		float t = this.quickLength();
 		if( t != 1 &&  t != 0) t = (float) (t / Math.sqrt(t));
-		this.scale(t);
+		Vector3f newVec = (Vector3f) this.clone();
+		newVec.scale(t);
+		return newVec;
 	}
-
 	
+	@Override
+    public Vector3f clone()
+	{
+        try {
+            return (Vector3f) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new Error(e);
+        }
+    }
 }
