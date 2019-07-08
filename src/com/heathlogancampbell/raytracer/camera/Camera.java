@@ -26,6 +26,7 @@ public class Camera
 	public Camera(Vector3f position, Vector3f target, Vector3f guidUp, double fov, double aspecRatio)
 	{
 		this.position = position;
+		
 		this.forward = (target.subtract(position)).normalize();
 		this.right = forward.cross(guidUp).normalize();
 		this.up = right.cross(forward);//Will have length 1 because forward and right has length 1

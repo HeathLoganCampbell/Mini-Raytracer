@@ -28,7 +28,7 @@ public class Ray implements Cloneable
 	}
 
 	public Ray() {
-		this(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), RAY_T_MAX);
+		this(new Vector3f(0, 0, 0), new Vector3f(0, 1, 0), RAY_T_MAX);
 	}
 
 	public Vector3f calculate(double t)

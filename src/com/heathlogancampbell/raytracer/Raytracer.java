@@ -3,7 +3,6 @@ package com.heathlogancampbell.raytracer;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Shape;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -12,12 +11,17 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import com.heathlogancampbell.raytracer.camera.Camera;
+import com.heathlogancampbell.raytracer.ray.IntersectionLog;
 import com.heathlogancampbell.raytracer.ray.Ray;
+import com.heathlogancampbell.raytracer.shapes.Plane;
+import com.heathlogancampbell.raytracer.shapes.Shape;
+import com.heathlogancampbell.raytracer.shapes.Sphere;
 import com.heathlogancampbell.raytracer.utils.Vector3f;
 
 public class Raytracer extends Canvas implements Runnable 
 {
-	public static int WIDTH = 600
+	private static final long serialVersionUID = 1L;
+	public static int WIDTH = 800
 			 		, HEIGHT = 400
 			 		, SCALE = 2;
 	private boolean isRunning = false;
@@ -44,12 +48,14 @@ public class Raytracer extends Canvas implements Runnable
 		this.shapes = new ArrayList<>();
 		this.camera = new Camera(new Vector3f(-5.0f, 1.0f, 0.0f),
 								 new Vector3f(0.0f, 1.0f, 0.0f), 
-								 new Vector3f(0,0,0),
+								 new Vector3f(0,1.0f,0),
 								 25.0f * Math.PI / 180,
-								 this.img.getWidth() / this.img.getHeight()
+								 (4.0f * this.img.getWidth()) / this.img.getHeight() 
 								);
 		
 		
+		this.shapes.add(new Plane(new Vector3f(0.0f, 0.0f, 0.0f), new Vector3f(0.0f, 1.0f, 0.0f)));
+		this.shapes.add(new Sphere(new Vector3f(0.0f, 1.0f, 0.0f), 4));
 		
 		this.createBufferStrategy(2);
 	}
@@ -71,8 +77,19 @@ public class Raytracer extends Canvas implements Runnable
 			{
 				Ray ray = this.camera.makeRay((2.0 * x) / img.getWidth() - 1.0, 
 											  (-2.0 * y) / img.getHeight() + 1.0);
+				IntersectionLog inetersection = new IntersectionLog(ray);
+
+				boolean intersection = false;
+				for(Shape shape : this.shapes)
+				{
+					if(shape.intersection(inetersection))
+						intersection = true;
+				}
 				
-				
+				if(intersection)
+					this.pixels[x + y * this.img.getWidth()] = 0xFF0000;
+				else
+					this.pixels[x + y * this.img.getWidth()] = 0x000000;
 			}
 		}
 	}
@@ -87,12 +104,11 @@ public class Raytracer extends Canvas implements Runnable
 			
 			this.render();
 			
-			
 			BufferStrategy bs = getBufferStrategy();
 			if(bs != null) 
 			{
 				Graphics g = bs.getDrawGraphics();
-				g.drawImage(img, 0, 0, img.getWidth() * SCALE, img.getHeight() * SCALE, null);
+				g.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), null);
 				g.dispose();
 				bs.show();
 			}

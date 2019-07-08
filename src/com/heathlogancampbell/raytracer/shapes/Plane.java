@@ -1,6 +1,7 @@
 package com.heathlogancampbell.raytracer.shapes;
 
 import com.heathlogancampbell.raytracer.ray.IntersectionLog;
+import com.heathlogancampbell.raytracer.ray.Ray;
 import com.heathlogancampbell.raytracer.utils.Vector3f;
 
 /**
@@ -29,23 +30,20 @@ public class Plane extends Shape
 		this.normal = normal;
 	}
 	
-	/**
-	 * 
-	 * @return T value
-	 */
-	public double intersection()
-	{
-		return 0.0d;
-	}
-	
-	public boolean isIntersection()
-	{
-		return false;
-	}
-
 	@Override
-	public void intersection(IntersectionLog intersectionLog) 
+	public boolean intersection(IntersectionLog intersectionLog) 
 	{
+		float dirDotN = intersectionLog.ray.velocity.dot(normal);
+		if (dirDotN == 0.0f) return false;
 		
+		double t = this.point.subtract(intersectionLog.ray.position).dot(this.normal) / dirDotN;
+		
+		if(t <= Ray.RAY_T_MIN || t >= intersectionLog.t)
+			return false;
+		
+		intersectionLog.t = t;
+		intersectionLog.hitShape = this;
+		
+		return true;
 	}
 }

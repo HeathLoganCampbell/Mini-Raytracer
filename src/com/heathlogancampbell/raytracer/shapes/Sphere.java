@@ -1,6 +1,7 @@
 package com.heathlogancampbell.raytracer.shapes;
 
 import com.heathlogancampbell.raytracer.ray.IntersectionLog;
+import com.heathlogancampbell.raytracer.ray.Ray;
 import com.heathlogancampbell.raytracer.utils.Vector3f;
 
 /**
@@ -30,16 +31,32 @@ import com.heathlogancampbell.raytracer.utils.Vector3f;
 public class Sphere extends Shape
 {
 	private double radius;
+	private double radiusSq;
 	
 	public Sphere(Vector3f point, double radius)
 	{
 		super(point);
 		this.radius = radius;
+		this.radiusSq = this.radius * this.radius;
 	}
 
 	@Override
-	public void intersection(IntersectionLog intersectionLog) 
+	public boolean intersection(IntersectionLog intersectionLog) 
 	{
+		Ray ray = intersectionLog.ray;
+		Vector3f delta = ray.position.subtract(this.point);
+
+		float a = ray.velocity.dot(ray.velocity);
+		float b = (float) (2.0 * delta.dot(ray.velocity));
+		float c = (float) (delta.dot(delta) - this.radiusSq);
+		float discriminant = (float) (b * b - 4.0 * a * c);
+		if(discriminant < 0)
+		{
+			return false;
+		}
 		
+		intersectionLog.t = (-b - Math.sqrt(discriminant)) / (2.0 * a);
+		intersectionLog.hitShape = this;
+		return true;
 	}
 }
