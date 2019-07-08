@@ -1,4 +1,4 @@
-package com.heathlogancampbell.raytracer;
+package com.heathlogancampbell.raytracer.ray;
 
 import com.heathlogancampbell.raytracer.utils.Vector3f;
 

@@ -1,6 +1,6 @@
 package com.heathlogancampbell.raytracer.camera;
 
-import com.heathlogancampbell.raytracer.Ray;
+import com.heathlogancampbell.raytracer.ray.Ray;
 import com.heathlogancampbell.raytracer.utils.Vector3f;
 
 /**

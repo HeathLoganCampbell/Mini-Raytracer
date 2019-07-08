@@ -1,5 +1,6 @@
 package com.heathlogancampbell.raytracer.shapes;
 
+import com.heathlogancampbell.raytracer.ray.IntersectionLog;
 import com.heathlogancampbell.raytracer.utils.Vector3f;
 
 /**
@@ -19,12 +20,12 @@ import com.heathlogancampbell.raytracer.utils.Vector3f;
  *  (Pp * n - P * n) = distance of starting point (if closer, it's smaller)
  *  1/(d * n) = how fast we get there
  */
-public class Plane 
+public class Plane extends Shape
 {
-	private Vector3f point, normal;
+	private Vector3f normal;
 
 	public Plane(Vector3f point, Vector3f normal) {
-		this.point = point;
+		super(point);
 		this.normal = normal;
 	}
 	
@@ -41,5 +42,10 @@ public class Plane
 	{
 		return false;
 	}
-	
+
+	@Override
+	public void intersection(IntersectionLog intersectionLog) 
+	{
+		
+	}
 }

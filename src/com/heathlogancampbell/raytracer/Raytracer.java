@@ -3,11 +3,17 @@ package com.heathlogancampbell.raytracer;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Shape;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
+
+import com.heathlogancampbell.raytracer.camera.Camera;
+import com.heathlogancampbell.raytracer.ray.Ray;
+import com.heathlogancampbell.raytracer.utils.Vector3f;
 
 public class Raytracer extends Canvas implements Runnable 
 {
@@ -17,6 +23,10 @@ public class Raytracer extends Canvas implements Runnable
 	private boolean isRunning = false;
 	private BufferedImage img;
 	private int[] pixels;
+	
+	private Camera camera;
+	
+	private ArrayList<Shape> shapes;
 	
 	public Raytracer(int width, int height)
 	{
@@ -31,6 +41,16 @@ public class Raytracer extends Canvas implements Runnable
 	
 	public void init() 
 	{
+		this.shapes = new ArrayList<>();
+		this.camera = new Camera(new Vector3f(-5.0f, 1.0f, 0.0f),
+								 new Vector3f(0.0f, 1.0f, 0.0f), 
+								 new Vector3f(0,0,0),
+								 25.0f * Math.PI / 180,
+								 this.img.getWidth() / this.img.getHeight()
+								);
+		
+		
+		
 		this.createBufferStrategy(2);
 	}
 	
@@ -45,7 +65,16 @@ public class Raytracer extends Canvas implements Runnable
 	
 	public void render()
 	{
-		
+		for (int x = 0; x < img.getWidth(); x++)
+		{
+			for (int y = 0; y < img.getHeight(); y++)
+			{
+				Ray ray = this.camera.makeRay((2.0 * x) / img.getWidth() - 1.0, 
+											  (-2.0 * y) / img.getHeight() + 1.0);
+				
+				
+			}
+		}
 	}
 	
 	@Override

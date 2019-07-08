@@ -1,5 +1,6 @@
 package com.heathlogancampbell.raytracer.shapes;
 
+import com.heathlogancampbell.raytracer.ray.IntersectionLog;
 import com.heathlogancampbell.raytracer.utils.Vector3f;
 
 /**
@@ -26,14 +27,19 @@ import com.heathlogancampbell.raytracer.utils.Vector3f;
  *  2 if it went throught the sphere and out the other end
  *
  */
-public class Sphere 
+public class Sphere extends Shape
 {
-	private Vector3f point;
 	private double radius;
 	
 	public Sphere(Vector3f point, double radius)
 	{
-		this.point = point;
+		super(point);
 		this.radius = radius;
+	}
+
+	@Override
+	public void intersection(IntersectionLog intersectionLog) 
+	{
+		
 	}
 }
