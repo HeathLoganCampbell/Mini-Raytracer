@@ -1,4 +1,4 @@
-package com.heathlogancampbell.raytrace;
+package com.heathlogancampbell.raytracer;
 
 public class Main
 {
