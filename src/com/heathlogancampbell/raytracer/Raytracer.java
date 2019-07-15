@@ -72,6 +72,7 @@ public class Raytracer extends Canvas implements Runnable
 	
 	public void render()
 	{
+		Vector3f lightSource = new Vector3f(0, 0, 50);
 		for (int x = 0; x < img.getWidth(); x++)
 		{
 			for (int y = 0; y < img.getHeight(); y++)
@@ -90,9 +91,15 @@ public class Raytracer extends Canvas implements Runnable
 				if(intersection)
 				{
 					int colour = 0;
-					colour |=  inetersection.colour.r << 16;
-					colour |=  inetersection.colour.g << 8;
-					colour |=  inetersection.colour.b;
+					
+					Vector3f pi = ray.position.add(inetersection.ray.velocity.scale(inetersection.t));
+					Vector3f L = lightSource.subtract(pi);
+					Vector3f N = inetersection.hitShape.getNormal(pi);	
+					double dt = L.normalize().dot(N.normalize());
+					
+					colour |=  (inetersection.colour.r * (int) (dt)) << 16;
+					colour |=  (inetersection.colour.g * (int) (dt))<< 8;
+					colour |=  (inetersection.colour.b * (int) (dt));
 					this.pixels[x + y * this.img.getWidth()] = colour;
 				}
 				else

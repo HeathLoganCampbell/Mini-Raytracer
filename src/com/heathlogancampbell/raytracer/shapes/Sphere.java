@@ -52,9 +52,7 @@ public class Sphere extends Shape
 		float c = (float) (delta.dot(delta) - this.radiusSq);
 		float discriminant = (float) (b * b - 4.0 * a * c);
 		if(discriminant < 0)
-		{
 			return false;
-		}
 		
 		intersectionLog.t = (-b - Math.sqrt(discriminant)) / (2.0 * a);
 		intersectionLog.hitShape = this;

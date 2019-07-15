@@ -23,6 +23,12 @@ TO DO:
 * reflections
 * refraction
 
+
+### v0.2.5 - Adding shadows
+![Shadows](./readme-resources/shadowv1.png)
+* Added the first version of shadows
+
+
 ## References
 * [Ray Tracer #4: Rays and Intersections By HillsoftCode](https://www.youtube.com/watch?v=hOeOuZGmeCM)
 * [Raytracing - Ray Sphere Intersection By Victor Li](https://viclw17.github.io/2018/07/16/raytracing-ray-sphere-intersection/)
