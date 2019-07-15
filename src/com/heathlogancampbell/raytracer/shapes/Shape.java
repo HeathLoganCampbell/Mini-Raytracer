@@ -15,5 +15,6 @@ public abstract class Shape
 		this.colour = colour;
 	}
 	
+	public abstract Vector3f getNormal(Vector3f vector);
 	public abstract boolean intersection(IntersectionLog intersectionLog);
 }

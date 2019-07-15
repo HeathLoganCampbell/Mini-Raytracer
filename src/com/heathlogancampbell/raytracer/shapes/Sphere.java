@@ -61,4 +61,10 @@ public class Sphere extends Shape
 		intersectionLog.colour = this.colour;
 		return true;
 	}
+
+	@Override
+	public Vector3f getNormal(Vector3f vector)
+	{
+		return vector.subtract(this.point).scale(1.0 / this.radius);
+	}
 }

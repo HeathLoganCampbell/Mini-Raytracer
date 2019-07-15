@@ -47,4 +47,9 @@ public class Plane extends Shape
 		intersectionLog.colour = colour;		
 		return true;
 	}
+
+	@Override
+	public Vector3f getNormal(Vector3f vector) {
+		return this.normal;
+	}
 }
