@@ -25,8 +25,15 @@ TO DO:
 
 
 ### v0.2.5 - Adding shadows
-![Shadows](./readme-resources/shadowv1.png)
+![Kinda Shadows](./readme-resources/shadowv1.png)
 * Added the first version of shadows
+
+### v0.2.7.5 - Adding shadows
+![The Sphere has correct shadows](./readme-resources/sphereShadow.png)
+* Sphere renders the correct shadows
+
+TO DO:
+* Add shadow to plane
 
 
 ## References
