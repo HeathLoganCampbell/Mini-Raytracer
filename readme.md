@@ -1,3 +1,10 @@
+# Mini Raytracer
+A ray tracer is a method of drawing 3D images on the screen through the use of math.
+So after doing a computer graphics course I thought I would give a go at creating a 
+Sphere
+
+I have log how it changed over time below
+
 ## Versions
 
 ### v0.1 - an outline of the shape
